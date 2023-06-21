@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tesseract</title>
+    <style type="text/css">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root{
+            --shadow: 0 0 100px rgb(0, 4, 255, 0.7);
+        }
+        body{
+            height: 100vh;
+            background: #000;
+            background-image: url("https://cdn.pixabay.com/photo/2011/12/14/12/17/galaxy-11098_1280.jpg");
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 75px;
+            perspective: 10em;
+            perspective-origin: 50% 1%;
+        }
+        .tesseract{
+            position: relative;
+            transform-style: preserve-3d;
+            transform-origin: center center;
+            animation: rotate 30s linear infinite;
+        }
+        @keyframes rotate{
+            to{
+                transform: rotateZ(360deg);
+            }
+        }
+        
+        .cube{
+            position: absolute;
+            height: 2em;
+            width: 2em;
+            bottom: -1em;
+            left: -1em;
+            transform-style: preserve-3d;
+        }
+        .left, .right, .top, .bottom, .front, .back{
+            position: absolute;
+            height: 100%;
+            width: 100%;
+            background: var(--bg);
+            box-shadow: 0 0 0.5em #000a inset;
+            border: 0.5px solid aqua;
+        }
+        .left{
+            transform: rotateY(90deg) translateZ(var(--depth));
+        }
+        .right{
+            transform: rotateY(90deg) translateZ(var(--depth));
+        }
+        .front{
+            transform: translateZ(var(--depth));
+        }
+        .back{
+            transform: translateZ(var(--depth));
+        }
+        .top{
+            transform: rotateX(90deg) translateZ(var(--depth));
+        }
+        .bottom{
+            transform: rotateX(90deg) translateZ(var(--depth));
+        }
+        .outerCube{
+            height: 3em;
+            width: 3em;
+        }
+        .innerCube{
+            transform: translate(25%, -25%);
+        }
+        .outerCube div{
+            box-shadow: var(--shadow);
+        }
+    </style>
+</head>
+<body>
+    <div class="tesseract">
+        <div class="cube innerCube" style="--bg: linear-gradient(45deg, rgba(0, 255, 255, 0.7), rgb(155, 0, 155));">
+            <div class="top" style="--depth: 1em;"></div>
+            <div class="bottom" style="--depth: -1em;"></div>
+            <div class="left" style="--depth: 1em;"></div>
+            <div class="right" style="--depth: -1em;"></div>
+            <div class="front" style="--depth: 1em;"></div>
+            <div class="back" style="--depth: -1em;"></div>
+        </div>
+        <div class="cube outerCube" style="--bg: rgba(0, 255, 255, 0.4);">
+            <div class="top" style="--depth: 1.5em;"></div>
+            <div class="bottom" style="--depth: -1.5em;"></div>
+            <div class="left" style="--depth: 1.5em;"></div>
+            <div class="right" style="--depth: -1.5em;"></div>
+            <div class="front" style="--depth: 1.5em;"></div>
+            <div class="back" style="--depth: -1.5em;"></div>
+        </div>
+    </div>
+</body>
+</html>
